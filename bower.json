@@ -1,0 +1,26 @@
+{
+  "name": "html5-semg",
+  "description": "Demoing a rotary cursor for an sEMG device in a browser",
+  "authors": [
+    "David Watkins <davidwatkins@cs.columbia.edu>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/crlab/HTML5-Asteroids",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.2.1",
+    "requirejs": "^2.3.5",
+    "bootstrap": "*"
+  },
+  "resolutions": {
+    "eventemitter2": "^4.1.0",
+    "requirejs": "^2.3.5"
+  }
+}
