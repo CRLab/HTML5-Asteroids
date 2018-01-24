@@ -3,6 +3,19 @@ define(['jquery', 'lib/volume-meter', 'lib/cursorlib'], function($, volume_meter
         let canvas = $("#canvas");
         let grid_size = 60;
 
+        // Initialize Cursor
+        // Get list of obstacles on screen
+        // Initialize keyboard listeners?
+        // Initialize volume listeners?
+        // Attach collision listeners
+
+        // While(true) {
+            //
+        // }
+
+        //TODO: Get colors of cursor correct
+        //TODO: Get sounds from Switch Controller
+
         // let game = new cursorlib.Game();
         //
         // game.canvasWidth  = canvas.width();
@@ -26,30 +39,10 @@ define(['jquery', 'lib/volume-meter', 'lib/cursorlib'], function($, volume_meter
         //
         // sprites.push(ship);
         //
-        // ship.bullets = [];
-        // for (var i = 0; i < 10; i++) {
-        //     var bull = new Bullet();
-        //     ship.bullets.push(bull);
-        //     sprites.push(bull);
-        // }
         // Game.ship = ship;
-        //
-        // var bigAlien = new BigAlien();
-        // bigAlien.setup();
-        // sprites.push(bigAlien);
-        // Game.bigAlien = bigAlien;
-        //
-        // var extraDude = new Ship();
-        // extraDude.scale = 0.6;
-        // extraDude.visible = true;
-        // extraDude.preMove = null;
-        // extraDude.children = [];
         //
         // var i, j = 0;
         //
-        // var paused = false;
-        // var showFramerate = false;
-        // var avgFramerate = 0;
         // var frameCount = 0;
         // var elapsedCounter = 0;
         //
@@ -109,24 +102,6 @@ define(['jquery', 'lib/volume-meter', 'lib/cursorlib'], function($, volume_meter
         //         }
         //     }
         //
-        //     // score
-        //     var score_text = ''+Game.score;
-        //     Text.renderText(score_text, 18, Game.canvasWidth - 14 * score_text.length, 20);
-        //
-        //     // extra dudes
-        //     for (i = 0; i < Game.lives; i++) {
-        //         context.save();
-        //         extraDude.x = Game.canvasWidth - (8 * (i + 1));
-        //         extraDude.y = 32;
-        //         extraDude.configureTransform();
-        //         extraDude.draw();
-        //         context.restore();
-        //     }
-        //
-        //     if (showFramerate) {
-        //         Text.renderText(''+avgFramerate, 24, Game.canvasWidth - 38, Game.canvasHeight - 2);
-        //     }
-        //
         //     frameCount++;
         //     elapsedCounter += elapsed;
         //     if (elapsedCounter > 1000) {
@@ -135,32 +110,9 @@ define(['jquery', 'lib/volume-meter', 'lib/cursorlib'], function($, volume_meter
         //         frameCount = 0;
         //     }
         //
-        //     if (paused) {
-        //         Text.renderText('PAUSED', 72, Game.canvasWidth/2 - 160, 120);
-        //     } else {
-        //         requestAnimFrame(mainLoop, canvasNode);
-        //     }
+        //     requestAnimFrame(mainLoop, canvasNode);
         // };
         //
         // mainLoop();
-        //
-        // $(window).keydown(function (e) {
-        //     switch (KEY_CODES[e.keyCode]) {
-        //         case 'f': // show framerate
-        //             showFramerate = !showFramerate;
-        //             break;
-        //         case 'p': // pause
-        //             paused = !paused;
-        //             if (!paused) {
-        //                 // start up again
-        //                 lastFrame = Date.now();
-        //                 mainLoop();
-        //             }
-        //             break;
-        //         case 'm': // mute
-        //             SFX.muted = !SFX.muted;
-        //             break;
-        //     }
-        // });
     });
 });
