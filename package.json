@@ -1,0 +1,15 @@
+{
+  "name": "sEMG_Browser_Control",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:CRLab/sEMG_Browser_Control.git",
+  "author": "David Watkins <djrival7@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "^4.0.0",
+    "express": "^4.16.2",
+    "jquery": "^3.3.1",
+    "popper.js": "^1.12.9",
+    "requirejs": "^2.3.5"
+  }
+}

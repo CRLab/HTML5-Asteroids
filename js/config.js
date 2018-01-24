@@ -1,10 +1,11 @@
 requirejs.config({
-    baseUrl: "/js",
+    baseUrl: "js",
     paths: {
         lib: "lib",
-        jquery: "../bower_components/jquery/dist/jquery",
-        requirejs: "../bower_components/requirejs/require",
-        bootstrap: "../bower_components/bootstrap/dist/js/bootstrap"
+        jquery: "../node_modules/jquery/dist/jquery",
+        requirejs: "../node_modules/requirejs/require",
+        bootstrap: "../node_modules/bootstrap/dist/js/bootstrap",
+        popper: "../node_modules/popper.js/dist/umd/popper"
     },
     shim: {
 
