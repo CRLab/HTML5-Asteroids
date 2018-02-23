@@ -1,9 +1,26 @@
 define(['jquery', 'lib/volume-meter', 'lib/cursorlib'], function($, volume_meter, cursorlib) {
     $(function () {
         let canvas = $("#canvas");
+
+        // Resize canvas to full screen size
+        let innerCanvas = canvas[0];
+        let context = innerCanvas.getContext('2d');
+        innerCanvas.width = window.innerWidth;
+        innerCanvas.height = window.innerHeight;
+        $('#overlay').show();
+
         let grid_size = 60;
 
         // Initialize Cursor
+        let cursorX = canvas.width() / 2;
+        let cursorY = canvas.height() / 2;
+        let cursor = new cursorlib.Cursor({
+            x: cursorX,
+            y: cursorY,
+            scale: 2
+        });
+        console.log(cursor);
+
         // Get list of obstacles on screen
         // Initialize keyboard listeners?
         // Initialize volume listeners?
@@ -32,7 +49,7 @@ define(['jquery', 'lib/volume-meter', 'lib/cursorlib'], function($, volume_meter
         // cursorlib.Sprite.prototype.grid    = grid;
         // cursorlib.Sprite.prototype.matrix  = new cursorlib.Matrix(2, 3);
         //
-        // var ship = new Ship();
+        // var ship = new Cursor();
         //
         // ship.x = Game.canvasWidth / 2;
         // ship.y = Game.canvasHeight / 2;

@@ -36,9 +36,9 @@ define(['jquery'], function($) {
 
     function Sprite() {
         this.init = function (name, points, game, grid_size) {
-            this.name     = name;
-            this.points   = points;
-            this.game = game;
+            this.name      = name;
+            this.points    = points;
+            this.game      = game;
             this.grid_size = grid_size;
 
             this.vel = {
@@ -370,10 +370,93 @@ define(['jquery'], function($) {
         };
     }
 
+    let Cursor = function ({ x = 0, y = 0, scale = 1 }) {
+
+        let cursor_shape = [-5,   4, 0, -12, 5,   4];
+        this.init("ship", cursor_shape);
+        this.x = x;
+        this.y = y;
+        this.scale = scale;
+
+        this.children.exhaust = new Sprite();
+        let exhaust_shape =[-3,  6, 0, 11, 3,  6];
+        this.children.exhaust.init("exhaust", exhaust_shape);
+
+        this.bulletCounter = 0;
+
+        this.postMove = this.wrapPostMove;
+
+        this.preMove = function (delta) {
+            if (KEY_STATUS.left) {
+                this.vel.rot = -6;
+            } else if (KEY_STATUS.right) {
+                this.vel.rot = 6;
+            } else {
+                this.vel.rot = 0;
+            }
+
+            if (KEY_STATUS.up) {
+                let rad = ((this.rot-90) * Math.PI)/180;
+                this.vel.x = 10 * Math.cos(rad);
+                this.vel.y = 10 * Math.sin(rad);
+                this.children.exhaust.visible = Math.random() > 0.1;
+                console.log(this.x + " " + this.y);
+            } else {
+                this.vel.x = 0;
+                this.vel.y = 0;
+                this.children.exhaust.visible = false;
+            }
+
+            if (this.bulletCounter > 0) {
+                this.bulletCounter -= delta;
+            }
+            if (KEY_STATUS.space) {
+                if (this.bulletCounter <= 0) {
+                    this.bulletCounter = 10;
+                    for (let i = 0; i < this.bullets.length; i++) {
+                        if (!this.bullets[i].visible) {
+                            SFX.laser();
+                            let bullet = this.bullets[i];
+                            let rad = ((this.rot-90) * Math.PI)/180;
+                            let vectorx = Math.cos(rad);
+                            let vectory = Math.sin(rad);
+                            // move to the nose of the ship
+                            bullet.x = this.x + vectorx * 4;
+                            bullet.y = this.y + vectory * 4;
+                            bullet.vel.x = 6 * vectorx + this.vel.x;
+                            bullet.vel.y = 6 * vectory + this.vel.y;
+                            bullet.visible = true;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            // limit the ship's speed
+            if (Math.sqrt(this.vel.x * this.vel.x + this.vel.y * this.vel.y) > 8) {
+                this.vel.x *= 0.95;
+                this.vel.y *= 0.95;
+            }
+        };
+
+        this.collision = function (other) {
+            SFX.explosion();
+            Game.explosionAt(other.x, other.y);
+            Game.FSM.state = 'player_died';
+            this.visible = false;
+            this.currentNode.leave(this);
+            this.currentNode = null;
+            Game.lives--;
+        };
+
+    };
+    Cursor.prototype = new Sprite();
+
     return {
         'Grid': Grid,
         'Sprite': Sprite,
-        'Matrix': Matrix
+        'Matrix': Matrix,
+        "Cursor": Cursor
     }
 });
 
